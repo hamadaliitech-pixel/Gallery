@@ -16,7 +16,7 @@ export const Navbar = () => {
 
         <div className="Nav-center leading-tight block sm:hidden">
           <div className="upprtext leading-tight flex justify-center text-gray-300">
-            Username
+            Hammad
           </div>
           <div className="location flex items-center">
             <Navigation size={14} />
@@ -27,11 +27,11 @@ export const Navbar = () => {
         <div className="flex gap-3">
           <div className="Nav-center items-center hidden sm:block">
             <div className="upprtext flex justify-center text-gray-300">
-              Username
+              Hammad
             </div>
             <div className="location flex items-center">
               <Navigation size={14} />
-              <p className="text-md ml-1 font-sans font-bold">New Zeland </p>
+              <p className="text-md ml-1 font-sans font-bold">Manchester us </p>
             </div>
           </div>
 
