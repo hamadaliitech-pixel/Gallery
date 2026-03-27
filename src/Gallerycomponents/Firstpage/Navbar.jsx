@@ -20,7 +20,7 @@ export const Navbar = () => {
           </div>
           <div className="location flex items-center">
             <Navigation size={14} />
-            <p className="text-md ml-1 font-sans font-bold">New Zeland, </p>
+            <p className="text-md ml-1 font-sans font-bold">Manchester, </p>
           </div>
         </div>
 
