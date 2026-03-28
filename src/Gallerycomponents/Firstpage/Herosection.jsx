@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ZoomIn, ArrowRight, ArrowLeft } from "lucide-react";
 import { useNavigate ,Route } from "react-router-dom";
+import { ApiFactchedData } from "../../Api/Api";
 
 
 const Herosection = () => {
+  
   const [indx, setindx] = useState(1);
   const navigate = useNavigate();
   const [Render, setRender] = useState([]);
@@ -23,15 +25,23 @@ const Herosection = () => {
     setindx(val);
     run(val);
   }
+  
+  // async function run(value) {
+    const data = useContext(ApiFactchedData)
+    console.log(data);
+    
+    // setRender(data);
+    // setload([]);
+  //   return data;
+  // }
 
   async function run(value) {
     const { data } = await axios.get(
       `https://picsum.photos/v2/list?page=${value}&limit=15`,
     );
     console.log(data);
-
-    setRender(data);
-    setload([]);
+    setRender(data)
+    setload([])
     return data;
   }
   //run function end
@@ -47,7 +57,7 @@ const Herosection = () => {
       </div>
       <div
         className="
-        fixed bottom-20 w-full 
+        fixed bottom-20 w-full z-10
         font-extrabold flex justify-center items-center  
         "
       >
