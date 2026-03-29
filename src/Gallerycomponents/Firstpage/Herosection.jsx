@@ -1,76 +1,35 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { ZoomIn, ArrowRight, ArrowLeft } from "lucide-react";
-import { useNavigate ,Route } from "react-router-dom";
-import { ApiFactchedData } from "../../Api/Api";
-
+import { useNavigate, Route, data } from "react-router-dom";
+import Api, { ApiFactchedData } from "../../Api/Api";
+// import Pagechange from "../../Pagechange/Pagechange";
 
 const Herosection = () => {
-  
-  const [indx, setindx] = useState(1);
   const navigate = useNavigate();
   const [Render, setRender] = useState([]);
   const [load, setload] = useState("loading...");
-  function prev() {
-    if (indx > 1) {
-      let vaa = indx - 1;
-      setindx(vaa);
-      run(vaa);
-    }
-  }
-  //next btn
-  function next() {
-    setindx([]);
-    let val = indx + 1;
-    setindx(val);
-    run(val);
-  }
+
+
+
+  const data = useContext(ApiFactchedData);
   
-  // async function run(value) {
-    const data = useContext(ApiFactchedData)
-    console.log(data);
-    
-    // setRender(data);
+  async function run() {
+    let date = await data;
+
     // setload([]);
-  //   return data;
-  // }
-
-  async function run(value) {
-    const { data } = await axios.get(
-      `https://picsum.photos/v2/list?page=${value}&limit=15`,
-    );
-    console.log(data);
-    setRender(data)
-    setload([])
-    return data;
+    setRender(date);
+    return date;
   }
-  //run function end
-
-  useEffect(() => {
-    run(indx);
-  }, []);
+  let functionrun = run();
+  
 
   return (
     <>
       <div className="w-full flex justify-between items-center text-3xl">
         {load}
       </div>
-      <div
-        className="
-        fixed bottom-20 w-full z-10
-        font-extrabold flex justify-center items-center  
-        "
-      >
-        <div className="flex sm:w-1/3 w-1/2 justify-between p-2 text-black rounded-t-3xl bg-white/50 backdrop-blur-lg items-center ">
-          <button onClick={prev} className=" grid place-items-center ">
-            <ArrowLeft className="pointer-events-none" />
-          </button>
-          <span className="font-serif ">{indx}</span>
-          <button onClick={next} className="grid place-items-center">
-            <ArrowRight className="pointer-events-none" />
-          </button>
-        </div>
-      </div>
+      
 
       {/* Main_image_container */}
       <div className="Main_image_container grid grid-cols-2 sm:grid-cols-3 overflow-y-scroll  gap-3 p-2 items-center">
@@ -80,13 +39,11 @@ const Herosection = () => {
             style={{ backgroundImage: `url(${item.download_url})` }}
             className="flex items-end h-60 bg-cover rounded-2xl overflow-hidden sm:h-56 cursor-pointer shadow-black shadow-md hover:scale-95 transition-transform"
             onClick={() => {
-              navigate('./Imagecloseup', {
+              navigate("./Imagecloseup", {
                 state: {
-                  id: item.id,
-                  page: indx,
-                  Image: item.download_url,
-                  item: item,
+                  func: functionrun,
                 },
+                putit
               });
             }}
           >
@@ -104,9 +61,13 @@ const Herosection = () => {
             </div>
           </div>
         ))}
-        <button onClick={()=>{
-        navigate(+1)
-      }}>next</button>
+        <button
+          onClick={() => {
+            navigate(+1);
+          }}
+        >
+          next
+        </button>
       </div>
     </>
   );

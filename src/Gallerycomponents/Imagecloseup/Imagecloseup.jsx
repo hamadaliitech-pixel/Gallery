@@ -12,6 +12,9 @@ const Imagecloseup = () => {
 
   const item = location.state?.item;
   const page = location.state?.page;
+  const func = location.state?.func;
+  console.log(func);
+  
 
   useEffect(() => {
     async function name() {
