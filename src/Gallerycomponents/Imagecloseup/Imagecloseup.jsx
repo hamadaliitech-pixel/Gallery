@@ -6,9 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Imagecloseup = () => {
   let dt = useNavigate()
 const location = useLocation()
-const massage = location.state?.item;
-console.log(massage);
-  
+const massage = location.state?.item;  
 
 
 // --------------Fetching data--------------------
