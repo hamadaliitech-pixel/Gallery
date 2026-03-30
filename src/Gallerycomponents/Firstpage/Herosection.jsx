@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { ZoomIn, ArrowRight, ArrowLeft } from "lucide-react";
 import { useNavigate, Route, data } from "react-router-dom";
 import Api, { ApiFactchedData } from "../../Api/Api";
+
 // import Pagechange from "../../Pagechange/Pagechange";
 
 const Herosection = () => {
@@ -10,10 +11,8 @@ const Herosection = () => {
   const [Render, setRender] = useState([]);
   const [load, setload] = useState("loading...");
 
-
-
   const data = useContext(ApiFactchedData);
-  
+
   async function run() {
     let date = await data;
 
@@ -21,15 +20,13 @@ const Herosection = () => {
     setRender(date);
     return date;
   }
-  let functionrun = run();
-  
+  run();
 
   return (
     <>
       <div className="w-full flex justify-between items-center text-3xl">
         {load}
       </div>
-      
 
       {/* Main_image_container */}
       <div className="Main_image_container grid grid-cols-2 sm:grid-cols-3 overflow-y-scroll  gap-3 p-2 items-center">
@@ -41,9 +38,8 @@ const Herosection = () => {
             onClick={() => {
               navigate("./Imagecloseup", {
                 state: {
-                  func: functionrun,
+                  item: item,
                 },
-                putit
               });
             }}
           >

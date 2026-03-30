@@ -4,12 +4,13 @@ import Imagecloseup from "./Gallerycomponents/Imagecloseup/Imagecloseup.jsx";
 import Error from "./assets/Error.jsx";
 import Imagedetails from "./Gallerycomponents/Imagecloseup/Imagedetails.jsx";
 import Api, { ApiFactchedData } from "./Api/Api.jsx";
-import { useContext } from "react";
+import { Provider } from "react-redux";
+import { store } from "./ReduxStore/Store.jsx";
+
 const App = () => {
-  
   return (
     <>
-    <Api/>
+      <Provider store={store}>
       <Routes>
         <Route>
           <Route path="/" element={<Firstpage />} />
@@ -18,6 +19,8 @@ const App = () => {
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
+        <Api />
+      </Provider>
     </>
   );
 };
