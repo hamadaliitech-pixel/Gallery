@@ -4,10 +4,9 @@ import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Imagecloseup = () => {
-  let dt = useNavigate()
+let dt = useNavigate()
 const location = useLocation()
 const massage = location.state?.item;  
-
 
 // --------------Fetching data--------------------
   // const data = useContext(ApiFactchedData);
@@ -18,6 +17,7 @@ const massage = location.state?.item;
   // FetchingMainData();
   // console.log(FetchingMainData());
 // ---------------------------------------------
+
   function run() {
     nevigate(-1);
   }
@@ -46,8 +46,8 @@ const massage = location.state?.item;
         <div className="Buttons flex justify-between">
           <ArrowLeft
             className="btn
-            bg-amber-400 
-            text-white 
+           bg-amber-400 
+           text-white 
            pointer-events-none  
            sm:block 
            h-12 

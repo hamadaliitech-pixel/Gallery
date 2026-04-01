@@ -16,11 +16,12 @@ const Herosection = () => {
   async function run() {
     let date = await data;
 
-    // setload([]);
+    setload([]);
     setRender(date);
     return date;
   }
   run();
+
 
   return (
     <>
