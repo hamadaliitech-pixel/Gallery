@@ -23,7 +23,7 @@ const Footer = () => {
             onClick={() => {
               dispatch(decrement());
             }}
-            className=" grid place-items-center "
+            className="grid place-items-center "
           >
             <ArrowLeft
               className="hover:shadow-xl transition-all duration-300 hover:text-white
