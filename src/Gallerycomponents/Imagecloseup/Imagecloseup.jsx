@@ -6,8 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Imagecloseup = () => {
 let dt = useNavigate()
 const location = useLocation()
-const massage = location.state?.item;  
-
+const massage = location.state?.item; 
+ 
 // --------------Fetching data--------------------
   // const data = useContext(ApiFactchedData);
   // async function FetchingMainData() {
@@ -35,9 +35,9 @@ const massage = location.state?.item;
     >
       <div className="upperdiv h-full sm:flex justify-between ">
         <div className="w-full flex flex-col items-center pt-10 justify-end text-black rounded-b-2xl">
-          <span className="font-serif text-5xl sm:leading-snug">Explore</span>
-          <span className="font-semibold sm:text-2xl justify-center flex items-center">
-            This Image is Captured by ""
+          <span className="font-serif text-5xl sm:leading-snug text-white">Explore</span>
+          <span className="font-semibold sm:text-2xl justify-center flex items-center text-white">
+            This Image is Captured by "{massage.author}"
           </span>
         </div>
 
