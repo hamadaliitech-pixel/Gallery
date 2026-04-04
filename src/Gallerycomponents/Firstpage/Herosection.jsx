@@ -14,7 +14,7 @@ const Herosection = () => {
     async function run() {
       let fetchedData = await data;
       setRender(fetchedData);
-      setIsLoading(false);
+      setIsLoading(false);      
     }
     run();
   }, [data]);

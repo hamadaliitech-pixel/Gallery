@@ -17,6 +17,7 @@ const Api = (props) => {
   }
 
   const data = GettingData(count);
+  
   //--------------------------------
   return (
     <>

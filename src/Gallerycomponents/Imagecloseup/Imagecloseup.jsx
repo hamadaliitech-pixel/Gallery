@@ -1,65 +1,75 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import Api, { ApiFactchedData } from "../../Api/Api";
-import { useContext } from "react";
+import { ApiFactchedData } from "../../Api/Api";
+import { useContext, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 const Imagecloseup = () => {
-let dt = useNavigate()
-const location = useLocation()
-const massage = location.state?.item; 
- 
-// --------------Fetching data--------------------
-  // const data = useContext(ApiFactchedData);
-  // async function FetchingMainData() {
-  //   let date = await data;
-  //   return date;
-  // }
-  // FetchingMainData();
-  // console.log(FetchingMainData());
-// ---------------------------------------------
+  let nevigate = useNavigate();
+  const location = useLocation();
+  const massage = location.state?.item;
+
+  const [first, setfirst] = useState(massage.id);
+  const [rendr, setrendr] = useState([]);
+
+  // ----------Fetching data--------------------
+  const data = useContext(ApiFactchedData);
+
+  useEffect(() => {
+    async function run() {
+      let fetchedData = await data;
+      setrendr(fetchedData);
+    }
+    run();
+  }, [data]);
+
+
+  // ---------------------------------------------
 
   function run() {
     nevigate(-1);
   }
 
-  function IncreaseByOne(prop) {
-    console.log(prop);
-  }
-
   return (
     <div
       style={{
-        backgroundImage: `url(${massage.download_url})`,
+        backgroundImage: `url(https://picsum.photos/id/${first}/5000/3333)`,
       }}
-      className="h-screen bg-cover bg-center flex flex-col justify-between"
+      className="h-screen bg-cover bg-center items-center flex flex-col justify-end
+      "
     >
-      <div className="upperdiv h-full sm:flex justify-between ">
-        <div className="w-full flex flex-col items-center pt-10 justify-end text-black rounded-b-2xl">
-          <span className="font-serif text-5xl sm:leading-snug text-white">Explore</span>
-          <span className="font-semibold sm:text-2xl justify-center flex items-center text-white">
-            This Image is Captured by "{massage.author}"
-          </span>
-        </div>
-
-        {/* Btns */}
-
-        <div className="Buttons flex justify-between">
-          <ArrowLeft
-            className="btn
-           bg-amber-400 
-           text-white 
-           pointer-events-none  
-           sm:block 
-           h-12 
-           w-12 p-1 
-           rounded-full"
-          />
-          <ArrowRight className="btn bg-amber-400  sm:block text-white h-12 w-12 p-1 rounded-full" />
-        </div>
+      <div className="w-full p-3 flex flex-col pt-10 leading-snug rounded-b-2xl ">
+        <span className="font-serif text-5xl sm:leading-snug">
+          Explore{" "}
+          <button
+            onClick={() => {
+              run();
+            }}
+            className="text-lg border py-1 rounded-2xl bg-gray-400 px-3"
+          >
+            <ArrowLeft className="hover:shadow-xl transition-all duration-300 hover:text-white" />
+          </button>
+        </span>
+        <span className="font-semibold sm:text-2xl flex">
+          This Image is Captured by "{massage.author}"
+        </span>
       </div>
+      {/* Btns */}
 
-      <div className="h-1/2 overflow-scroll w-screen flex bg-amber-50 gap-5 flex-nowrap">
-        downcontent
+      {/* Cards Collection */}
+      <div className=" bg-linear-to-t from-black via-gray-800 to-white/10 shadow-xl w-screen h-1/3 ">
+        <div className="cards-container flex flex-row items-center justify-start gap-3 p-2 h-full overflow-x-scroll scollbar-hidden">
+          {rendr.map((item) => (
+            <img
+              key={item.id}
+              src={item.download_url}
+              alt=""
+              onClick={() => {
+                setfirst(item.id);
+              }}
+              className="w-1/2 h-full object-cover rounded-3xl"
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
