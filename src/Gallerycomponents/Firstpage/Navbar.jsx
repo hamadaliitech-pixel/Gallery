@@ -2,7 +2,23 @@ import { Navigation, Search } from "lucide-react";
 import { Routes, Route, Link } from "react-router-dom";
 import Ran from "./Ran";
 import profile from "../../assets/profile.jpg";
+import gsap from 'gsap'
+import { useEffect } from "react";
 export const Navbar = () => {
+
+  useEffect(() => {
+
+    gsap.from(".animate",{
+    scale:0.9,
+    duration:1,
+    scrollTrigger:{
+        trigger:'.page2 #box',
+        scrub:1,
+        pin:true,
+        }
+    })
+  }, [])
+  
   return (
     <div className="Section-1 h-fit">
       <div className="flex justify-between items-center h-1/2 p-4">
@@ -46,12 +62,12 @@ export const Navbar = () => {
       </div>
       {/* interval */}
       <div className="Section-2 flex justify-center px-3 w-full h-1/3 pb-2">
-        <div className="searchbar w-screen sm:w-1/2 flex items-center px-3 rounded-full justify-start bg-gray-200">
+        <div className="searchbar animate w-screen sm:w-1/2 flex items-center px-3 rounded-full justify-start bg-gray-200">
           <Search size={28} />
           <input
             type="text"
             placeholder="Search through Gallery.."
-            className="focus:outline-none border-0 sm:max-w-2xl w-full p-2 sm:px-2 text-lg"
+            className=" focus:outline-none border-0 sm:max-w-2xl w-full p-2 sm:px-2 text-lg"
           />
         </div>
       </div>

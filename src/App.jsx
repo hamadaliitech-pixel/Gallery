@@ -5,8 +5,10 @@ import Error from "./assets/Error.jsx";
 import Imagedetails from "./Gallerycomponents/Imagecloseup/Imagedetails.jsx";
 import { Provider } from "react-redux";
 import { store } from "./ReduxStore/Store.jsx";
-
+import {UseLenis} from './Api/CustomHooks.jsx'
 const App = () => {
+  UseLenis()
+
   return (
     <>
       <Provider store={store}>
