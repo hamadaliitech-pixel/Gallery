@@ -3,7 +3,7 @@ import { ZoomIn } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ApiFactchedData } from "../../Api/Api";
 import gsap from "gsap";
-import Trash from "./Trash";
+import Masonry from "react-masonry-css";
 const Herosection = () => {
   const navigate = useNavigate();
   const [Render, setRender] = useState([]);
@@ -60,6 +60,12 @@ const Herosection = () => {
     run();
   }, [data]);
 
+  const breakpointColumns = {
+    default: 3,
+    1100:2,
+    700:1,
+  }
+
   return (
     <>
       <div
@@ -69,7 +75,9 @@ const Herosection = () => {
         {isLoading && "loading..."}
       </div>
 
-      <div className="Main_image_container grid grid-cols-2 sm:grid-cols-3 overflow-y-scroll gap-3 p-2 items-center">
+      <Masonry breakpointCols={breakpointColumns}
+      columnClassName="masonry-column" className="Main_image_container grid grid-cols-2 sm:grid-cols-3 overflow-y-scroll gap-3 p-2 items-center">
+
         {Render.map((item) => (
           <div
             ref={boxRef}
@@ -96,7 +104,7 @@ const Herosection = () => {
             </div>
           </div>
         ))}
-      </div>
+      </Masonry>
     </>
   );
 };
