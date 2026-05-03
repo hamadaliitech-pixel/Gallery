@@ -61,7 +61,7 @@ const Herosection = () => {
   }, [data]);
 
   const breakpointColumns = {
-    default: 2,
+    default: 3,
     1100:2,
     700:1,
   }
