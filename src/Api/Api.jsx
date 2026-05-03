@@ -11,7 +11,7 @@ const Api = (props) => {
   //-------------Catching Api--------------------
   async function GettingData(all) {
     const { data } = await axios.get(
-      `https://picsum.photos/v2/list?page=${all}&limit=15`,
+      `https://picsum.photos/v2/list?page=${all}&limit=30`,
     );
     return data;
   }

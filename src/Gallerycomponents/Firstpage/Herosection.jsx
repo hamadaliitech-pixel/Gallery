@@ -12,7 +12,7 @@ const Herosection = () => {
 
   const boxRef = useRef();
   // const AnimateImage = useRef()
-    const dotsRef = useRef([]);
+  const dotsRef = useRef([]);
   useEffect(() => {
     gsap.to(boxRef.current, {
       x: 400,
@@ -39,7 +39,7 @@ const Herosection = () => {
 
     // })
 
-     gsap.to(dotsRef.current, {
+    gsap.to(dotsRef.current, {
       opacity: 0,
       y: -5,
       duration: 0.5,
@@ -48,7 +48,6 @@ const Herosection = () => {
       yoyo: true,
       ease: "power1.inOut",
     });
-
   }, []);
 
   useEffect(() => {
@@ -61,10 +60,10 @@ const Herosection = () => {
   }, [data]);
 
   const breakpointColumns = {
-    default: 2,
-    1100:2,
-    700:1,
-  }
+    default: 3,
+    1100: 2,
+    700: 1,
+  };
 
   return (
     <>
@@ -75,15 +74,19 @@ const Herosection = () => {
         {isLoading && "loading..."}
       </div>
 
-      <Masonry breakpointCols={breakpointColumns}
-      columnClassName="masonry-column" className="Main_image_container grid grid-cols-2 sm:grid-cols-3 overflow-y-scroll gap-3 p-2 items-center">
-
+      <Masonry
+        columns={4}
+        spacing={2}
+        breakpointCols={breakpointColumns}
+        columnClassName="masonry-column"
+        className="Main_image_container masonry-column overflow-y-scroll p-2 items-center"
+      >
         {Render.map((item) => (
           <div
             ref={boxRef}
             key={item.id}
             style={{ backgroundImage: `url(${item.download_url})` }}
-            className=" animate flex items-end h-60 bg-cover rounded-2xl overflow-hidden sm:h-56 cursor-pointer shadow-black shadow-md hover:scale-95 transition-transform"
+            className="flex items-end h-60 bg-cover rounded-2xl overflow-hidden sm:h-56 cursor-pointer shadow-black shadow-md hover:scale-95 transition-transform"
             onClick={() => {
               navigate(`/Imagecloseup`, {
                 state: { item: item },
